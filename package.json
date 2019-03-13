@@ -1,0 +1,61 @@
+{
+  "name": "pi-gen",
+  "description": "Pingendo static site generator",
+  "version": "1.0.0",
+  "author": "Giulio Seregni @gseregni",
+  "bin": {
+    "pi-gen": "./bin/run"
+  },
+  "bugs": "https://github.com/gseregni/pi-gen/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^2",
+    "@types/cheerio": "^0.22.10",
+    "cheerio": "^1.0.0-rc.2",
+    "install": "^0.12.2",
+    "js-template": "^0.1.4",
+    "npm": "^6.8.0",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@oclif/tslint": "^3",
+    "@types/node": "^11.9.6",
+    "globby": "^8",
+    "ts-node": "^8",
+    "tslint": "^5",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/gseregni/pi-gen",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "pi-gen",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "gseregni/pi-gen",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "tslint -p . -t stylish",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
