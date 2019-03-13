@@ -25,7 +25,13 @@
     "globby": "^8",
     "ts-node": "^8",
     "tslint": "^5",
-    "typescript": "^3.3"
+    "typescript": "^3.3",
+    "ava": "^0.16.0",
+    "co-exec": "^1.0",
+    "codecov": "^1.0.1",
+    "ghooks": "^1.2.4",
+    "nyc": "^10.0.0",
+    "standard": "^8.4.0"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -54,8 +60,15 @@
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "tslint -p . -t stylish",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "test": "echo NO TESTS",
-    "version": "oclif-dev readme && git add README.md"
+    "test": "nyc ./node_modules/.bin/ava -v",
+    "version": "oclif-dev readme && git add README.md",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "standard": "standard index.js"
   },
-  "types": "lib/index.d.ts"
+  "types": "lib/index.d.ts",
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run standard"
+    }
+  }
 }
