@@ -19,7 +19,7 @@ $ npm install -g pi-gen
 $ pi-gen COMMAND
 running command...
 $ pi-gen (-v|--version|version)
-pi-gen/1.0.7 darwin-x64 node-v10.14.2
+pi-gen/1.0.8 darwin-x64 node-v10.14.2
 $ pi-gen --help [COMMAND]
 USAGE
   $ pi-gen COMMAND

@@ -1,7 +1,7 @@
 {
   "name": "pi-gen",
   "description": "Pingendo static site generator",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": "Giulio Seregni @gseregni",
   "bin": {
     "pi-gen": "./bin/run"
@@ -76,7 +76,7 @@
     "version": "oclif-dev readme && git add README.md",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "standard": "standard index.js",
-    "postinstall" : "npm install src/pi-template"
+    "postinstall": "npm install src/pi-template"
   },
   "types": "lib/index.d.ts",
   "config": {
