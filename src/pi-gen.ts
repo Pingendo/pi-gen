@@ -1,6 +1,6 @@
 
 import * as path from 'path'
-var piTemplate = require('../pi-template')
+var piTemplate = require('pi-template');
 import * as fs from 'fs'
 const walkSync = require('walk-sync');
 

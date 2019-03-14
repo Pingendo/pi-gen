@@ -4008,7 +4008,7 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
-js-template@^0.1.4:
+js-template@^0.1.4, js-template@~0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/js-template/-/js-template-0.1.4.tgz#6ab455261e94eba8ca9d8f79b5f557c3134e4f4b"
 
@@ -5624,6 +5624,12 @@ pathval@^1.1.0:
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
+
+"pi-template@file:pi-template":
+  version "2.4.0"
+  dependencies:
+    cheerio "^1.0.0-rc.2"
+    js-template "~0.1.4"
 
 pify@^2.0.0, pify@^2.2.0, pify@^2.3.0:
   version "2.3.0"
