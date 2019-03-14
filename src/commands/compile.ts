@@ -3,7 +3,6 @@ import {Command, flags} from '@oclif/command'
 import { readFileSync } from 'fs'
 import PiGen from '../pi-gen';
 
-
 export default class Compile extends Command {
   static description = 'compile an html template'
 
@@ -29,12 +28,15 @@ export default class Compile extends Command {
 
   async run() {
     const {args} = this.parse(Compile)
+
+    
     var g = new PiGen()
     .pages([args.file])
     .data()
     .build()
 
     console.log("model ", g.model)
+
     // let data = readFileSync(args.file)
     // var t = piTemplate(data, {foo:'Hello'}); //Hello
     // console.log(t)
