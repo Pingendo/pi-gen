@@ -9,10 +9,12 @@
   "bugs": "https://github.com/gseregni/pi-gen/issues",
   "dependencies": {
     "@oclif/command": "^1",
+    "@types/cheerio": "^0.22.10",
     "@oclif/config": "^1",
+    "@oclif/dev-cli": "^1",
     "@oclif/plugin-help": "^2",
     "@oclif/test": "^1.2.4",
-    "@types/cheerio": "^0.22.10",
+    "@oclif/tslint": "^3",
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.2",
     "get-caller-file": "^2.0.5",
