@@ -8,3 +8,4 @@
 /package-lock.json
 /tmp
 /node_modules
+/src/pi-template/node_modules
