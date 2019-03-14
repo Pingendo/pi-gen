@@ -19,7 +19,7 @@ $ npm install -g pi-gen
 $ pi-gen COMMAND
 running command...
 $ pi-gen (-v|--version|version)
-pi-gen/1.0.0 darwin-x64 node-v10.11.0
+pi-gen/1.0.1 darwin-x64 node-v10.14.2
 $ pi-gen --help [COMMAND]
 USAGE
   $ pi-gen COMMAND
@@ -28,8 +28,26 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
+* [`pi-gen compile FILE`](#pi-gen-compile-file)
 * [`pi-gen hello [FILE]`](#pi-gen-hello-file)
 * [`pi-gen help [COMMAND]`](#pi-gen-help-command)
+
+## `pi-gen compile FILE`
+
+compile an html template
+
+```
+USAGE
+  $ pi-gen compile FILE
+
+ARGUMENTS
+  FILE  input file
+
+EXAMPLE
+  $ pi-gen compile ./src/index.html
+```
+
+_See code: [src/commands/compile.ts](https://github.com/gseregni/pi-gen/blob/v1.0.1/src/commands/compile.ts)_
 
 ## `pi-gen hello [FILE]`
 
@@ -49,7 +67,7 @@ EXAMPLE
   hello world from ./src/hello.ts!
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/gseregni/pi-gen/blob/v1.0.0/src/commands/hello.ts)_
+_See code: [src/commands/hello.ts](https://github.com/gseregni/pi-gen/blob/v1.0.1/src/commands/hello.ts)_
 
 ## `pi-gen help [COMMAND]`
 
