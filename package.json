@@ -1,7 +1,7 @@
 {
   "name": "pi-gen",
   "description": "Pingendo static site generator",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "Giulio Seregni @gseregni",
   "bin": {
     "pi-gen": "./bin/run"
