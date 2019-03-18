@@ -22,7 +22,7 @@ export default class Compile extends Command {
 
   async run() {
 
-    var default_path = "./src_test/";
+    var default_path = "./src/";
 
     var g = new PiGen()
     var paths = Array();
