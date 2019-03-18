@@ -4,6 +4,7 @@ var piTemplate = require('pi-template');
 import * as fs from 'fs'
 const walkSync = require('walk-sync');
 
+
 interface IDictionary<TValue> {
     [id: string]: TValue;
 }
@@ -27,10 +28,13 @@ export default class PiGen {
             paths = [this.prefix]
 
         paths.forEach((p) => {
-            var c = fs.readFileSync(path.join(this.prefix , p))
-            var page = new Page()
-            page.contents = c
-            this.model.pages.set(p, page)
+
+            if ( fs.lstatSync(path.join(this.prefix , p)).isFile() ){
+                var c = fs.readFileSync(path.join(this.prefix , p))
+                var page = new Page()
+                page.contents = c
+                this.model.pages.set(p, page)
+            }
         })
 
         return this

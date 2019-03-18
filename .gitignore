@@ -3,6 +3,8 @@
 /node_modules
 *-debug.log
 *-error.log
+/test.html
+/src_test
 /.nyc_output
 /lib
 /package-lock.json
