@@ -4,7 +4,7 @@
 *-debug.log
 *-error.log
 /test.html
-/src_test
+# /src_test
 /.nyc_output
 /lib
 /package-lock.json
