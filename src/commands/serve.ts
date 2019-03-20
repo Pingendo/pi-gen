@@ -19,12 +19,15 @@ export default class Compile extends Command {
 
 
     var bs = require("browser-sync").create();
-    // Start the Browsersync server
-    bs.init({
-        server: "./build"
+   
+    // Build src and Start the Browsersync server
+    Builder.default.run().then( () => {
+        bs.init({
+            server: "./build"
+        });
     });
 
-    // and call any methods on it.
+    // watch data & src folder
     bs.watch(['./data/*','./src_test/*']).on('change', () => {
         Builder.default.run().then( () => {
             // reload browser
