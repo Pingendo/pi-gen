@@ -9,5 +9,6 @@
 /lib
 /package-lock.json
 /tmp
+/build
 /node_modules
 /src/pi-template/node_modules

@@ -3,14 +3,14 @@ import * as path from 'path'
 var piTemplate = require('pi-template');
 import * as fs from 'fs'
 const walkSync = require('walk-sync');
-
+const sass = require('node-sass');
 
 interface IDictionary<TValue> {
     [id: string]: TValue;
 }
 
 class Model {
-    pages:Map<string, Page> = new Map()
+    sources:Map<string, Page> = new Map()
     data:any = {}
 }
 
@@ -30,10 +30,10 @@ export default class PiGen {
         paths.forEach((p) => {
 
             if ( fs.lstatSync(path.join(this.prefix , p)).isFile() ){
-                var c = fs.readFileSync(path.join(this.prefix , p))
+                var c = fs.readFileSync(path.join(this.prefix , p),)
                 var page = new Page()
                 page.contents = c
-                this.model.pages.set(p, page)
+                this.model.sources.set(p, page)
             }
         })
 
@@ -41,12 +41,27 @@ export default class PiGen {
     }
 
     public build() {
-        this.model.pages.forEach((page,key) => {
-            var out = piTemplate(page.contents, {data:this.model.data})
-            var buildPath = path.join(this.prefix ,'build', key)
-            if (!fs.existsSync(path.dirname(buildPath)))
-                fs.mkdirSync(path.dirname(buildPath))
-            fs.writeFileSync(buildPath, out)
+        this.model.sources.forEach((page,key) => {
+
+
+            if(path.extname(key) == ".scss" && path.dirname(key).indexOf("/bootstrap") == -1 ) {
+
+                if(key[0] != "_"){
+                    var result = sass.renderSync({
+                        data: page.contents.toString('utf8'),
+                        includePaths: [ path.join(this.prefix ,'src_test', 'bootstrap') ]
+                    });
+                    var buildPath = path.join(this.prefix ,'build', key)
+                    fs.writeFileSync( buildPath.replace(".scss",".css"), result.css.toString('utf8'));
+                }
+
+            }else if( path.dirname(key).indexOf("/bootstrap") == -1  ){
+                var out = piTemplate(page.contents, {data:this.model.data})
+                var buildPath = path.join(this.prefix ,'build', key)
+                if (!fs.existsSync(path.dirname(buildPath)))
+                    fs.mkdirSync(path.dirname(buildPath))
+                fs.writeFileSync(buildPath, out)
+            }
         })
         return this
     }

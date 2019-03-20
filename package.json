@@ -21,6 +21,7 @@
     "install": "^0.12.2",
     "js-template": "^0.1.4",
     "mocha": "^6.0.2",
+    "node-sass": "^4.11.0",
     "npm": "^6.8.0",
     "oclif": "^1.12.10",
     "pi-template": "^2.4.1",
