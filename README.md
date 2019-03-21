@@ -19,7 +19,7 @@ $ npm install -g pi-gen
 $ pi-gen COMMAND
 running command...
 $ pi-gen (-v|--version|version)
-pi-gen/1.0.16 darwin-x64 node-v10.14.2
+pi-gen/1.0.17 darwin-x64 node-v10.14.2
 $ pi-gen --help [COMMAND]
 USAGE
   $ pi-gen COMMAND
@@ -31,6 +31,7 @@ USAGE
 * [`pi-gen build`](#pi-gen-build)
 * [`pi-gen compile FILE`](#pi-gen-compile-file)
 * [`pi-gen help [COMMAND]`](#pi-gen-help-command)
+* [`pi-gen serve`](#pi-gen-serve)
 
 ## `pi-gen build`
 
@@ -44,7 +45,7 @@ EXAMPLE
   $ pi-gen build
 ```
 
-_See code: [src/commands/build.ts](https://github.com/gseregni/pi-gen/blob/v1.0.16/src/commands/build.ts)_
+_See code: [src/commands/build.ts](https://github.com/gseregni/pi-gen/blob/v1.0.17/src/commands/build.ts)_
 
 ## `pi-gen compile FILE`
 
@@ -61,7 +62,7 @@ EXAMPLE
   $ pi-gen compile ./src/index.html
 ```
 
-_See code: [src/commands/compile.ts](https://github.com/gseregni/pi-gen/blob/v1.0.16/src/commands/compile.ts)_
+_See code: [src/commands/compile.ts](https://github.com/gseregni/pi-gen/blob/v1.0.17/src/commands/compile.ts)_
 
 ## `pi-gen help [COMMAND]`
 
@@ -79,4 +80,21 @@ OPTIONS
 ```
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.1.6/src/commands/help.ts)_
+
+## `pi-gen serve`
+
+watch /src /data an reload
+
+```
+USAGE
+  $ pi-gen serve
+
+OPTIONS
+  --app=app  (required)
+
+EXAMPLE
+  $ pi-gen serve
+```
+
+_See code: [src/commands/serve.ts](https://github.com/gseregni/pi-gen/blob/v1.0.17/src/commands/serve.ts)_
 <!-- commandsstop -->
