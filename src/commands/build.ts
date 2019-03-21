@@ -22,7 +22,7 @@ export default class Compile extends Command {
 
   async run() {
 
-    var default_path = "./src_test/";
+    var default_path = "./src/";
 
     var g = new PiGen()
     var paths = Array();
@@ -30,7 +30,7 @@ export default class Compile extends Command {
     arr.forEach( (el : any) => {
       if(el[0] != "." && el.indexOf("bootstrap/") == -1) paths.push(default_path +  el )
     });
-    console.log("PATHS", paths);
+    // console.log("PATHS", paths);
 
     g.pages(paths);
     g.data()
