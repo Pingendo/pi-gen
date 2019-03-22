@@ -52,8 +52,7 @@ export default class PiGen {
             if(path.extname(key) == ".scss" ) {
                 if(key[0] != "_"){
                     var result = sass.renderSync({
-                        data: page.contents.toString('utf8'),
-                        includePaths: [ path.join(this.prefix ,'src', 'bootstrap') ]
+                        data: page.contents.toString('utf8')
                     });
                     fs.writeFileSync( buildPath.replace(".scss",".css"), result.css.toString('utf8'));
                 }

@@ -28,7 +28,8 @@ export default class Compile extends Command {
     var paths = Array();
     var arr = walkSync(default_path);
     arr.forEach( (el : any) => {
-      if(el[0] != "." && el.indexOf("bootstrap/") == -1) paths.push(default_path +  el )
+      if(el.indexOf("bootstrap/") == -1) 
+        paths.push(default_path +  el )
     });
     // console.log("PATHS", paths);
 
