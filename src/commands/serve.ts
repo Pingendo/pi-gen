@@ -1,4 +1,4 @@
-import {Command, flags} from '@oclif/command'
+import {Command} from '@oclif/command'
 
 
 import * as Builder from './build'
@@ -9,11 +9,6 @@ export default class Compile extends Command {
   static examples = [
     `$ pi-gen serve`,
   ]
-
-  static flags = {
-    app: flags.string({required: true})
-  }
-
 
   async run() {
 
