@@ -5,6 +5,7 @@ import * as fs from 'fs'
 const walkSync = require('walk-sync');
 const sass = require('node-sass');
 const shell = require('shelljs');
+const cheerio = require('cheerio')
 
 
 interface IDictionary<TValue> {
@@ -59,7 +60,26 @@ export default class PiGen {
             }
             else if(path.extname(key) == ".html" ) {
                 var out = piTemplate(page.contents, {data:this.model.data})
-                fs.writeFileSync(buildPath, out)
+                var array = out.split("<html");
+
+                if(array.length == 1)
+                  fs.writeFileSync(buildPath,out )
+                else {
+
+                    for (let index = 0; index < array.length; index++) {
+
+                        if(array[index] != ""){
+                            const $ = cheerio.load("<html"+array[index])
+                            if( $('html').attr("ht-slug") ){
+                                var buildPath = path.join(this.prefix ,'build', $('html').attr("ht-slug"));
+                                $('html').removeAttr("ht-slug");
+                                fs.writeFileSync( buildPath ,$.html() )
+                            }
+                            else
+                                fs.writeFileSync(buildPath.replace(".html","-"+index+".html"), "<html"+array[index])
+                        }
+                    }
+                }
             }
             else
                 fs.writeFileSync( buildPath, page.contents);
