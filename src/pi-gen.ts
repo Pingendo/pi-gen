@@ -62,7 +62,7 @@ export default class PiGen {
                 var out = piTemplate(page.contents, {data:this.model.data})
                 var array = out.split("<html");
 
-                if(array.length == 1)
+                if(array.length == 2)
                   fs.writeFileSync(buildPath,out )
                 else {
 
