@@ -60,23 +60,26 @@ export default class PiGen {
             }
             else if(path.extname(key) == ".html" ) {
                 var out = piTemplate(page.contents, {data:this.model.data})
+                // var array = out.split("<!DOCTYPE");
                 var array = out.split("<html");
+                array.shift();
 
                 if(array.length == 1)
                   fs.writeFileSync(buildPath,out )
                 else {
-
                     for (let index = 0; index < array.length; index++) {
+
 
                         if(array[index] != ""){
                             const $ = cheerio.load("<html"+array[index])
+
                             if( $('html').attr("ht-slug") ){
                                 var buildPath = path.join(this.prefix ,'build', $('html').attr("ht-slug"));
                                 $('html').removeAttr("ht-slug");
-                                fs.writeFileSync( buildPath ,$.html() )
+                                fs.writeFileSync( buildPath ,'<!DOCTYPE html>'+$.html() )
                             }
                             else
-                                fs.writeFileSync(buildPath.replace(".html","-"+index+".html"), "<html"+array[index])
+                                fs.writeFileSync(buildPath.replace(".html","-"+index+".html"), +'<!DOCTYPE html>'+$.html())
                         }
                     }
                 }
@@ -88,17 +91,28 @@ export default class PiGen {
     }
 
     public data() {
-        const paths = walkSync("./data/", { globs: ['*.json'] })
-        console.log("data -> ", paths)
+        const paths = walkSync("./data/")
 
         paths.forEach((k:string, v:string) => {
-            console.log(k, v)
-            var c = fs.readFileSync(path.join(this.prefix , 'data', k)).toString()
-            var key = k.replace(".json","")
-            this.model.data[key] = JSON.parse(c)
-        })
         
+            if( path.extname(k) == ".json"){
+                var c = fs.readFileSync(path.join(this.prefix , 'data', k)).toString()
+
+                if( k.indexOf(path.sep) != -1 ){
+                    
+                    var key = String( path.dirname(k).split(path.sep).pop() )
+
+                    if(!this.model.data[ key ])
+                        this.model.data[ key ] = Array()
+
+                    this.model.data[ key ].push( JSON.parse(c) )
+                }
+                else{
+                    var key = k.replace(".json","")
+                    this.model.data[ key ] = JSON.parse(c)
+                }
+            }
+        })
         return this
     }
-    
 }
