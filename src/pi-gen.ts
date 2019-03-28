@@ -64,7 +64,7 @@ export default class PiGen {
                 var array = out.split("<html");
                 array.shift();
 
-                if(array.length == 2)
+                if(array.length == 1)
                   fs.writeFileSync(buildPath,out )
                 else {
                     for (let index = 0; index < array.length; index++) {
