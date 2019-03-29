@@ -23,7 +23,7 @@ export default class Compile extends Command {
     });
 
     // watch data & src folder
-    bs.watch(['./data/*','./src/*']).on('change', () => {
+    bs.watch(['./data/**/*','./src/**/*']).on('change', () => {
         Builder.default.run().then( () => {
             // reload browser
             bs.reload();
