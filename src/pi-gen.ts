@@ -18,7 +18,7 @@ class Model {
 }
 
 class Page {
-    contents:Buffer = Buffer.alloc(0)
+    contents:String = ""
 }
 
 export default class PiGen {
@@ -33,7 +33,8 @@ export default class PiGen {
         paths.forEach((p) => {
 
             if ( fs.lstatSync(path.join(this.prefix , p)).isFile() ){
-                var c = fs.readFileSync(path.join(this.prefix , p),)
+                console.log("read file ", "utf8")
+                var c = fs.readFileSync(path.join(this.prefix , p),'utf8')
                 var page = new Page()
                 page.contents = c
                 this.model.sources.set(p, page)
@@ -52,7 +53,8 @@ export default class PiGen {
                 shell.mkdir('-p', path.dirname(buildPath));
 
             if(path.extname(key) == ".scss" ) {
-                if(key[0] != "_") {
+                if(path.basename(key)[0] != "_") {
+                    console.log("Compiling SASS ", key)
                     var result = sass.renderSync({
                         // data: page.contents.toString('utf8')
                         file: key
@@ -87,7 +89,7 @@ export default class PiGen {
                 }
             }
             else
-                fs.writeFileSync( buildPath, page.contents);
+                fs.writeFileSync(buildPath, page.contents.toString());
         })
         return this
     }
