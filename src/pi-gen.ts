@@ -95,7 +95,7 @@ export default class PiGen {
     public data() {
 
         if (!fs.existsSync("./data/")) 
-        return
+        return this
 
         const paths = walkSync("./data/")
 
