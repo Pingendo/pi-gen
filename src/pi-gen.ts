@@ -18,7 +18,7 @@ class Model {
 }
 
 class Page {
-    contents:Buffer = Buffer.alloc(0)
+    contents:Buffer = Buffer.alloc(0) 
 }
 
 export default class PiGen {
@@ -33,7 +33,7 @@ export default class PiGen {
         paths.forEach((p) => {
 
             if ( fs.lstatSync(path.join(this.prefix , p)).isFile() ){
-                var c = fs.readFileSync(path.join(this.prefix , p),)
+                var c = fs.readFileSync(path.join(this.prefix , p))
                 var page = new Page()
                 page.contents = c
                 this.model.sources.set(p, page)
@@ -52,7 +52,8 @@ export default class PiGen {
                 shell.mkdir('-p', path.dirname(buildPath));
 
             if(path.extname(key) == ".scss" ) {
-                if(key[0] != "_") {
+                if(path.basename(key)[0] != "_") {
+                    console.log("Compiling SASS ", key)
                     var result = sass.renderSync({
                         // data: page.contents.toString('utf8')
                         file: key
@@ -61,6 +62,8 @@ export default class PiGen {
                 }
             }
             else if(path.extname(key) == ".html" ) {
+                // console.log(page.contents)
+                console.log("Compiling HTML ", key)
                 var out = piTemplate(page.contents, {data:this.model.data})
                 // var array = out.split("<!DOCTYPE");
                 var array = out.split("<html");
@@ -86,8 +89,11 @@ export default class PiGen {
                     }
                 }
             }
-            else
-                fs.writeFileSync( buildPath, page.contents);
+            else {
+                console.log("Copying ", key)
+                fs.writeFileSync(buildPath, page.contents); 
+            }
+                
         })
         return this
     }
@@ -95,7 +101,7 @@ export default class PiGen {
     public data() {
 
         if (!fs.existsSync("./data/")) 
-        return this
+            return this
 
         const paths = walkSync("./data/")
 
