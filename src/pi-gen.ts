@@ -44,6 +44,7 @@ export default class PiGen {
     }
 
     public build() {
+
         this.model.sources.forEach((page,key) => {
 
             var buildPath = path.join(this.prefix ,'build', key.replace("src/",""))
@@ -51,9 +52,10 @@ export default class PiGen {
                 shell.mkdir('-p', path.dirname(buildPath));
 
             if(path.extname(key) == ".scss" ) {
-                if(key[0] != "_"){
+                if(key[0] != "_") {
                     var result = sass.renderSync({
-                        data: page.contents.toString('utf8')
+                        // data: page.contents.toString('utf8')
+                        file: key
                     });
                     fs.writeFileSync( buildPath.replace(".scss",".css"), result.css.toString('utf8'));
                 }
@@ -91,6 +93,10 @@ export default class PiGen {
     }
 
     public data() {
+
+        if (!fs.existsSync("./data/")) 
+        return this
+
         const paths = walkSync("./data/")
 
         paths.forEach((k:string, v:string) => {
