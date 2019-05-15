@@ -69,8 +69,16 @@ export default class PiGen {
                 var array = out.split("<html");
                 array.shift();
 
-                if(array.length == 1)
-                  fs.writeFileSync(buildPath,out )
+                if(array.length == 1){
+                    const $ = cheerio.load(out)
+                    if( $('html').attr("ht-slug") ){
+                        var buildPath = path.join(this.prefix ,'build', $('html').attr("ht-slug"));
+                        $('html').removeAttr("ht-slug");
+                        fs.writeFileSync( buildPath ,'<!DOCTYPE html>'+$.html() )
+                    }   
+                    else
+                        fs.writeFileSync(buildPath,out )
+                }
                 else {
                     for (let index = 0; index < array.length; index++) {
 
