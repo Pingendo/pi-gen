@@ -74,10 +74,15 @@ export default class PiGen {
                     if( $('html').attr("ht-slug") ){
                         var buildPath = path.join(this.prefix ,'build', $('html').attr("ht-slug"));
                         $('html').removeAttr("ht-slug");
+
+                        this.ensureDirectoryExistence(buildPath)
                         fs.writeFileSync( buildPath ,'<!DOCTYPE html>'+$.html() )
                     }   
-                    else
-                        fs.writeFileSync(buildPath,out )
+                    else {
+                        this.ensureDirectoryExistence(buildPath)
+                        fs.writeFileSync(buildPath,out)
+                    }
+                        
                 }
                 else {
                     for (let index = 0; index < array.length; index++) {
@@ -89,16 +94,20 @@ export default class PiGen {
                             if( $('html').attr("ht-slug") ){
                                 var buildPath = path.join(this.prefix ,'build', $('html').attr("ht-slug"));
                                 $('html').removeAttr("ht-slug");
+                                this.ensureDirectoryExistence(buildPath)
                                 fs.writeFileSync( buildPath ,'<!DOCTYPE html>'+$.html() )
                             }
-                            else
+                            else {
+                                this.ensureDirectoryExistence(buildPath)
                                 fs.writeFileSync(buildPath.replace(".html","-"+index+".html"), +'<!DOCTYPE html>'+$.html())
+                            }
                         }
                     }
                 }
             }
             else {
                 console.log("Copying ", key)
+                this.ensureDirectoryExistence(buildPath)
                 fs.writeFileSync(buildPath, page.contents); 
             }
                 
@@ -135,4 +144,13 @@ export default class PiGen {
         })
         return this
     }
+
+     private ensureDirectoryExistence(filePath:string) {
+        var dirname = path.dirname(filePath);
+        if (fs.existsSync(dirname)) {
+          return true;
+        }
+        this.ensureDirectoryExistence(dirname);
+        fs.mkdirSync(dirname);
+      }
 }

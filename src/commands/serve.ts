@@ -14,11 +14,16 @@ export default class Compile extends Command {
 
 
     var bs = require("browser-sync").create();
-   
+
     // Build src and Start the Browsersync server
     Builder.default.run().then( () => {
         bs.init({
-            server: "./build"
+            server: {
+              baseDir: "./build",
+              serveStaticOptions: {
+                extensions: ['html']
+              }
+            }
         });
     });
 
