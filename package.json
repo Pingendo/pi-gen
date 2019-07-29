@@ -25,7 +25,7 @@
     "node-sass": "^4.11.0",
     "npm": "^6.8.0",
     "oclif": "^1.12.10",
-    "pi-template": "2.4.7",
+    "pi-template": "2.4.8",
     "shelljs": "^0.8.3",
     "tslib": "^1",
     "walk-sync": "^1.1.3"
