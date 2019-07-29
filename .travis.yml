@@ -28,6 +28,6 @@ jobs:
 notifications:
   email:
     recipients:
-    - giorgio.seregni@pingendo.com
+    - info@pingendo.com
     on_success: never
     on_failure: always
