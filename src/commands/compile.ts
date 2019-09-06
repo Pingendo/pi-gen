@@ -35,7 +35,7 @@ export default class Compile extends Command {
     .data()
     .build()
 
-    console.log("model ", g.model)
+    // console.log("model ", g.model)
 
     // let data = readFileSync(args.file)
     // var t = piTemplate(data, {foo:'Hello'}); //Hello

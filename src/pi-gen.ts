@@ -134,7 +134,8 @@ export default class PiGen {
                     if(!this.model.data[ key ])
                         this.model.data[ key ] = Array()
 
-                    this.model.data[ key ].push( JSON.parse(c) )
+                    var filename = path.basename(k).replace(".json","")
+                    this.model.data[key][filename] = JSON.parse(c)
                 }
                 else{
                     var key = k.replace(".json","")
@@ -142,6 +143,7 @@ export default class PiGen {
                 }
             }
         })
+
         return this
     }
 
